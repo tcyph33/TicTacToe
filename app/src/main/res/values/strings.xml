@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Tic Tac Toe</string>
+    <string name="title_activity_display_winner">Tic Tac Toe Winner</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="restart">TAP TO PLAY AGAIN</string>
+    <string name="RGDirections">Think you have what it takes to defeat the Green Team? Play as
+        the Red Team and try to beat the Green Team in a game of Tic Tac Toe! Make your Move&#8230;</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="easy">Play this mode if you need to feel good about yourself or just win for once</string>
+    <string name="hard">Play against someone who actually knows what they are doing</string>
+    <string name="impossible">You have a 99% chance of not winning. DISCLAIMER: Actual odds, unless you know the secret&#8230;</string>
+    <string name="one_player_step_1">1. Begin By Placing an X</string>
+    <string name="hard_title">Hard Game</string>
+    <string name="easy_title">Easy Game</string>
+    <string name="impossible_title">Impossible Game</string>
+    <string name="easy_step_2">2. Feel Good About Yourself</string>
+    <string name="hard_step_2">2. See If You Can Beat The Challenge</string>
+    <string name="impossible_step_2">2. Good Luck&#8230;</string>
+</resources>

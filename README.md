@@ -40,12 +40,12 @@ WHEN VIEWING CODE
 
 Button Numbering Layout For The Game Is As Follows
 
-   1    2    3
-   4    5    6
-   7    8    9
+	1    2    3
+	4    5    6
+	7    8    9
 
 Button Numbering Layout In Terms Of Array Indices Is As Follows
 
-   [0]  [1]  [2]
-   [3]  [4]  [5]
-   [6]  [7]  [8]
+	[0]  [1]  [2]
+	[3]  [4]  [5]
+	[6]  [7]  [8]

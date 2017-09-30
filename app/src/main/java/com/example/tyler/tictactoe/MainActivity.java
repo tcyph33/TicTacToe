@@ -11,6 +11,21 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
 
+    /* Button Layout For The Game Is As Follows
+
+    *    1    2    3
+    *    4    5    6
+    *    7    8    9
+    *
+    *  Button Layout In Terms Of Array Indices Is As Follows
+    *
+    *   [0]  [1]  [2]
+    *   [3]  [4]  [5]
+    *   [6]  [7]  [8]
+    *
+    * */
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
     protected void endGame(Button[] bArr)
     {
         //If users use the UI back button they cannot press any more buttons
-        for(int i = 0; i < bArr.length; i++)
+        for(Button b : bArr)
         {
-            bArr[i].setEnabled(false);
+            b.setEnabled(false);
         }
 
     }

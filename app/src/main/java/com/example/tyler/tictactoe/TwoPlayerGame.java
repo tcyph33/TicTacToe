@@ -22,14 +22,14 @@ public class TwoPlayerGame extends AppCompatActivity {
 
     public void onButtonClick(View v)
     {
-        boolean player1_turn = true;
+        boolean player1_turn;
         Button button = (Button)findViewById(v.getId());    //Get id of button tapped
 
         //Check to see who's turn it is
-        player1_turn = whichTurn(player1_turn);
+        player1_turn = whichTurn();
 
         //Set button to either X or O
-        if(player1_turn == true)
+        if(player1_turn)
         {
             v.setBackgroundColor(Color.RED);
             button.setText("X");
@@ -45,59 +45,50 @@ public class TwoPlayerGame extends AppCompatActivity {
         //Check to see if there is a winner
         CheckWinner();
 
-        //if there is a winner display a message that dismisses when screen is tapped
-        //then reset the game by enabling the buttons and resetting the text, bgcolor, and count
     }
 
-    private boolean whichTurn(boolean f)
+    private boolean whichTurn()
     {
         count++;
 
-        if(count % 2 == 1) //if the count is odd it is player 1's turn to place an X
-        {
-            f = true;
-        }
-        else
-        {
-            f = false;
-        }
-
-        return f;
+        //if the count is odd it is player 1's turn to place an X so it returns true
+        return count % 2 == 1;
     }
 
     private void CheckWinner()
     {
-        Button b1 = (Button)findViewById(R.id.button);
-        Button b2 = (Button)findViewById(R.id.button2);
-        Button b3 = (Button)findViewById(R.id.button3);
-        Button b4 = (Button)findViewById(R.id.button4);
-        Button b5 = (Button)findViewById(R.id.button5);
-        Button b6 = (Button)findViewById(R.id.button6);
-        Button b7 = (Button)findViewById(R.id.button7);
-        Button b8 = (Button)findViewById(R.id.button8);
-        Button b9 = (Button)findViewById(R.id.button9);
-        Button bArr[] = {b1, b2, b3, b4, b5, b6, b7, b8, b9};
-        CharSequence t1 = b1.getText();
-        CharSequence t2 = b2.getText();
-        CharSequence t3 = b3.getText();
-        CharSequence t4 = b4.getText();
-        CharSequence t5 = b5.getText();
-        CharSequence t6 = b6.getText();
-        CharSequence t7 = b7.getText();
-        CharSequence t8 = b8.getText();
-        CharSequence t9 = b9.getText();
+        Button bArr[] = {
+                (Button)findViewById(R.id.button),
+                (Button)findViewById(R.id.button2),
+                (Button)findViewById(R.id.button3),
+                (Button)findViewById(R.id.button4),
+                (Button)findViewById(R.id.button5),
+                (Button)findViewById(R.id.button6),
+                (Button)findViewById(R.id.button7),
+                (Button)findViewById(R.id.button8),
+                (Button)findViewById(R.id.button9)};
+        CharSequence txtArr[] = {
+                bArr[0].getText(),
+                bArr[1].getText(),
+                bArr[2].getText(),
+                bArr[3].getText(),
+                bArr[4].getText(),
+                bArr[5].getText(),
+                bArr[6].getText(),
+                bArr[7].getText(),
+                bArr[8].getText()};
         boolean gameEnd = false;
         Intent intent = new Intent(this, DisplayWinner.class);
 
         //Check if X has 3 in a row
-        if ((t1 == "X" && t2 == "X" && t3 == "X")
-                || (t4 == "X" && t5 == "X" && t6 == "X")
-                || (t7 == "X" && t8 == "X" && t9 == "X")
-                || (t1 == "X" && t4 == "X" && t7 == "X")
-                || (t2 == "X" && t5 == "X" && t8 == "X")
-                || (t3 == "X" && t6 == "X" && t9 == "X")
-                || (t1 == "X" && t5 == "X" && t9 == "X")
-                || (t3 == "X" && t5 == "X" && t7 == "X"))
+        if ((txtArr[0] == "X" && txtArr[1] == "X" && txtArr[2] == "X")
+                || (txtArr[3] == "X" && txtArr[4] == "X" && txtArr[5] == "X")
+                || (txtArr[6] == "X" && txtArr[7] == "X" && txtArr[8] == "X")
+                || (txtArr[0] == "X" && txtArr[3] == "X" && txtArr[6] == "X")
+                || (txtArr[1] == "X" && txtArr[4] == "X" && txtArr[7] == "X")
+                || (txtArr[2] == "X" && txtArr[5] == "X" && txtArr[8] == "X")
+                || (txtArr[0] == "X" && txtArr[4] == "X" && txtArr[8] == "X")
+                || (txtArr[2] == "X" && txtArr[4] == "X" && txtArr[6] == "X"))
         {
             //display X is a winner stuff
             intent.putExtra("winner", 'X');
@@ -106,14 +97,14 @@ public class TwoPlayerGame extends AppCompatActivity {
         }
 
         //Check if O has 3 in a row
-        if ((t1 == "O" && t2 == "O" && t3 == "O")
-                || (t4 == "O" && t5 == "O" && t6 == "O")
-                || (t7 == "O" && t8 == "O" && t9 == "O")
-                || (t1 == "O" && t4 == "O" && t7 == "O")
-                || (t2 == "O" && t5 == "O" && t8 == "O")
-                || (t3 == "O" && t6 == "O" && t9 == "O")
-                || (t1 == "O" && t5 == "O" && t9 == "O")
-                || (t3 == "O" && t5 == "O" && t7 == "O"))
+        if ((txtArr[0] == "O" && txtArr[1] == "O" && txtArr[2] == "O")
+                || (txtArr[3] == "O" && txtArr[4] == "O" && txtArr[5] == "O")
+                || (txtArr[6] == "O" && txtArr[7] == "O" && txtArr[8] == "O")
+                || (txtArr[0] == "O" && txtArr[3] == "O" && txtArr[6] == "O")
+                || (txtArr[1] == "O" && txtArr[4] == "O" && txtArr[7] == "O")
+                || (txtArr[2] == "O" && txtArr[5] == "O" && txtArr[8] == "O")
+                || (txtArr[0] == "O" && txtArr[4] == "O" && txtArr[8] == "O")
+                || (txtArr[2] == "O" && txtArr[4] == "O" && txtArr[6] == "O"))
         {
             //display O is a winner stuff
             intent.putExtra("winner", 'O');
@@ -124,7 +115,7 @@ public class TwoPlayerGame extends AppCompatActivity {
 
 
         //Check if it is a tie (all text has an X or O)
-        if(count == 9 && gameEnd != true)
+        if(count == 9 && !gameEnd)
         {
             //display that they are too evenly matched
             intent.putExtra("winner", 'T');
@@ -133,7 +124,7 @@ public class TwoPlayerGame extends AppCompatActivity {
         }
 
         //If game has ended
-        if(gameEnd == true)
+        if(gameEnd)
         {
             mainActivity.endGame(bArr);
         }

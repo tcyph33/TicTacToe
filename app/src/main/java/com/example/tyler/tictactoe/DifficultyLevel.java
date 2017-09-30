@@ -52,104 +52,98 @@ public class DifficultyLevel extends AppCompatActivity {
         //Check if two Os in a row and then find val to get 3 in a row
         for(int i = 0; i < O_marked.length; i++)
         {
-            for(int j = 0; j < O_marked.length; j++)
+            if (!O_marked[i]) //if first index isn't marked don't bother finding second index
+                continue;
+
+            for(int j = i + 1; j < O_marked.length; j++)
             {
-                if(O_marked[j] && O_marked[i] && i!=j) //both marked and not the same
+                if(O_marked[j]) //both marked and not the same
                 {
-                    if(j == 4) //if one of index is middle
+                    //if one of index is middle
+                    if(j == 4)
                     {
                         val = (j + j) - i;
                         //Mark value if not yet taken
-                        if(!marked[val])
-                        {
+                        if (!marked[val]) {
                             PlaceMark(bArr, val);
                             return true;
                         }
-                    }else {
-                        if(i == 4) //if other index is middle
+
+                        continue;
+                    }
+
+                    //if other index is middle
+                    if(i == 4)
+                    {
+                        val = (i + i) - j;
+                        //Mark value if not yet taken
+                        if (!marked[val]) {
+                            PlaceMark(bArr, val);
+                            return true;
+                        }
+
+                        continue;
+                    }
+
+                    //If they are next to each other vertically
+                    if(j - i == 3)
+                    {
+                        if(i < 3)
                         {
-                            val = (i + i) - j;
+                            val = j + 3;
                             //Mark value if not yet taken
-                            if(!marked[val])
-                            {
+                            if (!marked[val]) {
                                 PlaceMark(bArr, val);
                                 return true;
                             }
-                        }else {
-                            if(j - i == 3) //If they are next to each other vertically
-                            {
-                                if(i < 3)
-                                {
-                                    val = j + 3;
-                                    //Mark value if not yet taken
-                                    if(!marked[val])
-                                    {
-                                        PlaceMark(bArr, val);
-                                        return true;
-                                    }
-                                }else
-                                {
-                                    val = i - 3;
-                                    //Mark value if not yet taken
-                                    if(!marked[val])
-                                    {
-                                        PlaceMark(bArr, val);
-                                        return true;
-                                    }
-                                }
-
-                            }else {
-                                if(j - i == 1 && j != 3 && j != 6) //next to each other horizontally
-                                {
-                                    if (j == 1 || j == 7) {
-                                        val = (j + j) - i;
-                                        //Mark value if not yet taken
-                                        if(!marked[val])
-                                        {
-                                            PlaceMark(bArr, val);
-                                            return true;
-                                        }
-                                    } else {
-                                        val = (i + i) - j;
-                                        //Mark value if not yet taken
-                                        if(!marked[val])
-                                        {
-                                            PlaceMark(bArr, val);
-                                            return true;
-                                        }
-                                    }
-                                }else
-                                {
-                                    if ((i+j)%2 == 0 && j!=1 && j!= 3 && j!=5 && j!=7) //If they are opposite of each other
-                                    {
-                                        val = (i + j) / 2;
-                                        //Mark value if not yet taken
-                                        if(!marked[val])
-                                        {
-                                            PlaceMark(bArr, val);
-                                            return true;
-                                        }
-                                    }else
-                                    {
-                                        if((i==1 && j==7) || i==3 && j==5) //two opposites that were not accounted for above
-                                        {
-                                            val = (i + j) / 2;
-                                            //Mark value if not yet taken
-                                            if(!marked[val])
-                                            {
-                                                PlaceMark(bArr, val);
-                                                return true;
-                                            }
-                                        }
-                                    }
-                                }
+                        }else
+                        {
+                            val = i - 3;
+                            //Mark value if not yet taken
+                            if (!marked[val]) {
+                                PlaceMark(bArr, val);
+                                return true;
                             }
+                        }
+
+                        continue;
+                    }
+
+                    //next to each other horizontally
+                    if (j - i == 1 && j != 3 && j != 6)
+                    {
+                        if (j == 1 || j == 7) {
+                            val = j + 1;
+                            //Mark value if not yet taken
+                            if (!marked[val]) {
+                                PlaceMark(bArr, val);
+                                return true;
+                            }
+                        } else {
+                            val = i - 1;
+                            //Mark value if not yet taken
+                            if (!marked[val]) {
+                                PlaceMark(bArr, val);
+                                return true;
+                            }
+                        }
+
+                        continue;
+                    }
+
+                    //If they are opposite of each other
+                    if ((i+j)%2 == 0)
+                    {
+                        val = (i + j) / 2;
+                        //Mark value if not yet taken
+                        if (!marked[val]) {
+                            PlaceMark(bArr, val);
+                            return true;
                         }
                     }
                 }
             }
         }
-
 
         return false;
     }
@@ -163,11 +157,15 @@ public class DifficultyLevel extends AppCompatActivity {
         //Check if two Xs in a row and then find val to get 3 in a row
         for(int i = 0; i < X_marked.length; i++)
         {
-            for(int j = 0; j < X_marked.length; j++)
+            if (!X_marked[i]) //if first index isn't marked don't bother finding second index
+                continue;
+
+            for(int j = i + 1; j < X_marked.length; j++)
             {
-                if(X_marked[j] && X_marked[i] && i!=j) //both marked and not the same
+                if(X_marked[j]) //both marked and not the same
                 {
-                    if(j == 4) //if one of index is middle
+                    //if one of index is middle
+                    if(j == 4)
                     {
                         val = (j + j) - i;
                         //Mark value if not yet taken
@@ -175,84 +173,82 @@ public class DifficultyLevel extends AppCompatActivity {
                             PlaceMark(bArr, val);
                             return true;
                         }
-                    }else {
-                        if(i == 4) //if other index is middle
+
+                        continue;
+                    }
+
+                    //if other index is middle
+                    if(i == 4)
+                    {
+                        val = (i + i) - j;
+                        //Mark value if not yet taken
+                        if (!marked[val]) {
+                            PlaceMark(bArr, val);
+                            return true;
+                        }
+
+                        continue;
+                    }
+
+                    //If they are next to each other vertically
+                    if(j - i == 3)
+                    {
+                        if(i < 3)
                         {
-                            val = (i + i) - j;
+                            val = j + 3;
                             //Mark value if not yet taken
                             if (!marked[val]) {
                                 PlaceMark(bArr, val);
                                 return true;
                             }
-                        }else {
-                            if(j - i == 3) //If they are next to each other vertically
-                            {
-                                if(i < 3)
-                                {
-                                    val = j + 3;
-                                    //Mark value if not yet taken
-                                    if (!marked[val]) {
-                                        PlaceMark(bArr, val);
-                                        return true;
-                                    }
-                                }else
-                                {
-                                    val = i - 3;
-                                    //Mark value if not yet taken
-                                    if (!marked[val]) {
-                                        PlaceMark(bArr, val);
-                                        return true;
-                                    }
-                                }
-
-                            }else {
-                                if(j - i == 1 && j != 3 && j != 6) //next to each other horizontally
-                                {
-                                    if (j == 1 || j == 7) {
-                                        val = (j + j) - i;
-                                        //Mark value if not yet taken
-                                        if (!marked[val]) {
-                                            PlaceMark(bArr, val);
-                                            return true;
-                                        }
-                                    } else {
-                                        val = (i + i) - j;
-                                        //Mark value if not yet taken
-                                        if (!marked[val]) {
-                                            PlaceMark(bArr, val);
-                                            return true;
-                                        }
-                                    }
-                                }else
-                                {
-                                    if ((i+j)%2 == 0 && j!=1 && j!= 3 && j!=5 && j!=7) //If they are opposite of each other
-                                    {
-                                        val = (i + j) / 2;
-                                        //Mark value if not yet taken
-                                        if (!marked[val]) {
-                                            PlaceMark(bArr, val);
-                                            return true;
-                                        }
-                                    }else
-                                    {
-                                        if((i==1 && j==7) || i==3 && j==5) //two opposites that were not accounted for above
-                                        {
-                                            val = (i + j) / 2;
-                                            //Mark value if not yet taken
-                                            if (!marked[val]) {
-                                                PlaceMark(bArr, val);
-                                                return true;
-                                            }
-                                        }
-                                    }
-                                }
+                        }else
+                        {
+                            val = i - 3;
+                            //Mark value if not yet taken
+                            if (!marked[val]) {
+                                PlaceMark(bArr, val);
+                                return true;
                             }
+                        }
+
+                        continue;
+                    }
+
+                    //next to each other horizontally
+                    if (j - i == 1 && j != 3 && j != 6)
+                    {
+                        if (j == 1 || j == 7) {
+                            val = j + 1;
+                            //Mark value if not yet taken
+                            if (!marked[val]) {
+                                PlaceMark(bArr, val);
+                                return true;
+                            }
+                        } else {
+                            val = i - 1;
+                            //Mark value if not yet taken
+                            if (!marked[val]) {
+                                PlaceMark(bArr, val);
+                                return true;
+                            }
+                        }
+
+                        continue;
+                    }
+
+                    //If they are opposite of each other
+                    if ((i+j)%2 == 0)
+                    {
+                        val = (i + j) / 2;
+                        //Mark value if not yet taken
+                        if (!marked[val]) {
+                            PlaceMark(bArr, val);
+                            return true;
                         }
                     }
                 }
             }
         }
-
 
         return false;
     }
@@ -294,19 +290,14 @@ public class DifficultyLevel extends AppCompatActivity {
     protected boolean CheckWinner_X()
     {
         //Checks if one of the 8 ways to win are marked by the user
-        if ((X_marked[0] && X_marked[1] && X_marked[2])
+        return (X_marked[0] && X_marked[1] && X_marked[2])
                 || (X_marked[3] && X_marked[4] && X_marked[5])
                 || (X_marked[6] && X_marked[7] && X_marked[8])
                 || (X_marked[0] && X_marked[3] && X_marked[6])
                 || (X_marked[1] && X_marked[4] && X_marked[7])
                 || (X_marked[2] && X_marked[5] && X_marked[8])
                 || (X_marked[0] && X_marked[4] && X_marked[8])
-                || (X_marked[2] && X_marked[4] && X_marked[6]))
-        {
-            return true;
-        }
-
-        return false;
+                || (X_marked[2] && X_marked[4] && X_marked[6]);
     }
 
     //Returns true if all buttons are marked
@@ -336,12 +327,7 @@ public class DifficultyLevel extends AppCompatActivity {
     }
 
     //Returns true if a position is marked
-    protected boolean isMarked(int x) {
-        if(marked[x])
-            return true;
-        else
-            return false;
-    }
+    protected boolean isMarked(int x) { return marked[x]; }
 
     //Returns random number
     protected int getRandom(int x)

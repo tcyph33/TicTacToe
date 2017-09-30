@@ -157,7 +157,7 @@ public class ImpossibleGame extends AppCompatActivity {
     private void PlaceMarkImpossible(Button [] bArr)
     {
 
-        //implement algorithm here
+        //algorithm implementation
         value = r.nextInt(9);
 
         if(!level.isMarked(value)) //if unmarked

@@ -33,3 +33,19 @@ POSSIBLE FUTURE UPDATES (IF I EVER HAVE TIME):
         
         Learn how to make the 2 Player mode play between 2 different devices (via both bluetooth and WiFi) as well as still having
         the pass-and-play option.
+
+
+
+WHEN VIEWING CODE
+
+Button Numbering Layout For The Game Is As Follows
+
+   1    2    3
+   4    5    6
+   7    8    9
+
+Button Numbering Layout In Terms Of Array Indices Is As Follows
+
+   [0]  [1]  [2]
+   [3]  [4]  [5]
+   [6]  [7]  [8]
